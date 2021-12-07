@@ -8,10 +8,10 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
 
   const config = new DocumentBuilder()
-   .setTitle('Shopping list API')
-   .setDescription('My shopping list API description')
-   .setVersion('1.0')
-   .build();
+    .setTitle('Products API')
+    .setDescription('Products API description')
+    .setVersion('1.0')
+    .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 

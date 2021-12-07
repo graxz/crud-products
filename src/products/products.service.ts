@@ -5,10 +5,11 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Product } from './entities/product.entity';
 
-
 @Injectable()
 export class ProductsService {
-  constructor(@InjectRepository(Product) private readonly repository: Repository<Product>) { }
+  constructor(
+    @InjectRepository(Product) private readonly repository: Repository<Product>,
+  ) {}
 
   create(createProductDto: CreateProductDto): Promise<Product> {
     const product = this.repository.create(createProductDto);
@@ -23,7 +24,10 @@ export class ProductsService {
     return this.repository.findOne(id);
   }
 
-  async update(id: string, updateProductDto: UpdateProductDto): Promise<Product> {
+  async update(
+    id: string,
+    updateProductDto: UpdateProductDto,
+  ): Promise<Product> {
     const product = await this.repository.preload({
       id: id,
       ...updateProductDto,
@@ -36,6 +40,6 @@ export class ProductsService {
 
   async remove(id: string) {
     const product = await this.findOne(id);
-    return this.repository.remove(product);  
+    return this.repository.remove(product);
   }
 }

@@ -12,11 +12,11 @@ export class Product extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @UpdateDateColumn({ name: 'updated_at', type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
-  updatedAt: Date;
-
-  @CreateDateColumn({ name: 'created_at', type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
-  createdAt: Date;
+  @UpdateDateColumn({
+    name: 'updated_at',
+    type: 'timestamp',
+  })
+  updatedAt?: Date;
 
   @Column({ name: 'image_url', type: 'text' })
   imageUrl: string;
